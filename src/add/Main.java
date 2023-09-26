@@ -1,4 +1,5 @@
 package add;
+
 import java.util.Scanner;
 
 //Базовий класс
@@ -8,6 +9,7 @@ class Calculator {
         return bet * 1.25;
     }
 }
+
 //Похідний класс,де перевизначаємо метод"calculateWin(double bet)"
 //у випадку b) в завдані
 class Calculator_1 extends Calculator {
@@ -18,6 +20,7 @@ class Calculator_1 extends Calculator {
         return win - fee;
     }
 }
+
 //Похідний класс де перевизначаємо метод"calculateWin(double bet)"
 //у випадку с) в завадні
 class Calculator_2 extends Calculator {
@@ -37,3 +40,14 @@ public class Main {
 //  В залежності від ведденої ставки користувачем,обираємо віповідний класс для обчислення
         Calculator winningCalculator;
         if (bet < 3) {
+            winningCalculator = new Calculator();
+        } else if (bet >= 3 && bet <= 7) {
+            winningCalculator = new Calculator_1();
+        } else {
+            winningCalculator = new Calculator_2();
+        }
+
+        double win = winningCalculator.calculate(bet);
+        System.out.println("Виграш: " + win);
+    }
+}
